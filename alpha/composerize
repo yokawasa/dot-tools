@@ -1,0 +1,15 @@
+#!/bin/sh
+
+if [ $# -lt 1 ]
+then
+  echo "Usage: $0 <Docker run command>"
+  echo "example"
+  echo "composerize docker run --rm -it progrium/stress --cpu 2 --io 1 --vm 2 --vm-bytes 128M --timeout 10s"
+  exit 1
+fi
+# https://github.com/magicmark/composerize
+# parse isn't good enough
+# FIXME: replace the parser with something else ...
+npm install composerize -g
+set -x
+/usr/local/bin/composerize "$@"
