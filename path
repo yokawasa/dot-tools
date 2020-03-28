@@ -1,0 +1,12 @@
+#!/bin/sh
+
+COMMAND="${0##*/}"
+usage() {
+    echo "${COMMAND} <file full path>"
+    exit
+}
+[ "$1" = '-h' -o "$1" = '' ] && usage
+
+file=$1
+path=${file%\/*}
+echo $path

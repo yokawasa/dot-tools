@@ -1,0 +1,21 @@
+#!/bin/sh
+
+if [ $# -ne 3 ]; then
+  echo "usage:" 1>&2
+  echo "  ./runcmd.sh <COUNT> <INTERVAL> <COMMAND>" 1>&2
+  exit 1
+fi
+
+maxcount=$1
+interval=$2
+cmd=$3
+c=0
+
+while [ $c -le $maxcount ]
+do
+    $cmd
+    (( c++ ))
+    sleep $interval
+done
+
+

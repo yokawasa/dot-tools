@@ -1,0 +1,8 @@
+#!/bin/sh
+
+PSLISTS=`ps aux |grep ssh-agent |grep $USER |egrep -v '(grep|usr)' |awk '{print $2}'`
+for p in $PSLISTS
+do
+    echo $p
+    kill -9 $p
+done
