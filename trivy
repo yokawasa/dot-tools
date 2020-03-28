@@ -2,11 +2,11 @@
 
 if [ $# -ne 1 ]
 then
-    echo "Usage: $0 <YOUR_IMAGE_NAME>"
+  echo "Usage: $0 <YOUR_IMAGE_NAME>"
+  exit 1
 fi
 YOUR_IMAGE_NAME=$1
-
-MY_CACHE_DIR=$HOME/dev/trivycache
+MY_CACHE_DIR=$HOME/dev/trivycache/$(echo ${YOUR_IMAGE_NAME}|awk -F: '{print $1}')
 if [ ! -d ${MY_CACHE_DIR} ]
 then
   mkdir -p ${MY_CACHE_DIR}
