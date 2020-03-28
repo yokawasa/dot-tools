@@ -8,6 +8,7 @@
 - tree
 - counter
 - color
+- path
 - runcmd
 - kill-sa
 - weather 
