@@ -1,0 +1,15 @@
+#!/bin/sh
+
+if [ $# -ne 1 ]
+then
+    echo "Usage: $0 <YOUR_IMAGE_NAME>"
+fi
+YOUR_IMAGE_NAME=$1
+
+MY_CACHE_DIR=$HOME/dev/trivycache
+if [ ! -d ${MY_CACHE_DIR} ]
+then
+  mkdir -p ${MY_CACHE_DIR}
+fi
+
+docker run --rm -v ${MY_CACHE_DIR}:/root/.cache/ aquasec/trivy ${YOUR_IMAGE_NAME}
