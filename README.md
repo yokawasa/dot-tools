@@ -13,3 +13,4 @@
 - kill-sa
 - weather 
 - trivy
+- macos-version
