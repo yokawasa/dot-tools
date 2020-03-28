@@ -14,3 +14,5 @@
 - weather 
 - trivy
 - macos-version
+- pskill
+- ch
