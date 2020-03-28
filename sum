@@ -1,0 +1,16 @@
+#!/usr/bin/perl -w
+
+use strict;
+
+my $total = 0;
+while(<STDIN>){
+        s/[\r]+$//;
+        if ( $_ eq "\n"){ last;}
+        s/[\n]+$//;
+        print " + ".$_."\n";
+        $total += $_;
+}
+
+print "total=".$total."\n";
+
+1;

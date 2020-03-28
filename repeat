@@ -1,0 +1,14 @@
+#!/bin/bash
+
+if [ $# -ne 1 ]
+then
+    echo "USAGE: $1 <cmd>"
+    exit 1;
+fi
+
+CMD="$1"
+while true;
+do
+    echo $($CMD)
+    sleep 1
+done

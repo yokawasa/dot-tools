@@ -1,0 +1,12 @@
+#!/bin/sh
+
+FILE=$1
+
+if [ "$FILE" != "" ];
+then
+    cat $FILE | python -mjson.tool| perl -Xpne 's/\\u([0-9a-fA-F]{4})/chr(hex($1))/eg'
+else
+    echo "$0 <file>"
+fi
+
+

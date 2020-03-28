@@ -1,0 +1,45 @@
+#!/usr/bin/perl
+
+use strict;
+use Getopt::Std;
+
+MAIN: {
+        my %opts;
+        getopts('i:e:', \%opts) or &usage();
+        my $input = ($opts{'i'}) ? $opts{'i'} : '' ;
+        my $exclude  = ($opts{'e'}) ? $opts{'e'} : '' ;
+
+        if ($input eq '' || $exclude eq '' ) {
+                print "[Error] wrong args! \n";
+                &usage();
+        }
+        my %exh;
+        open (EX,"$exclude") or die("Can not open file:$exclude ($!)");
+        while(<EX>){
+                s/[\r\n]+$//;
+                if ($_ ne '' ) { $exh{$_} = 'y'; }
+        }
+        close(EX);
+        open (IN,"$input") or die("Can not open file:$input ($!)");
+        while(<IN>){
+                s/[\r\n]+$//;
+#               my @c = split /^C/,$_,2;
+#               if (scalar(@c) != 2) { next; }
+#               my @cc = split /^B/,$c[0],2;
+#               if (scalar(@cc) != 2) { next; }
+#               my $id =$cc[1];
+                my $id =$_;
+                if ( $exh{$id} ne 'y' ) {
+                        printf "%s\n", $_;
+                }
+        }
+        close(IN);
+}
+
+sub usage() {
+        print STDERR << "EOF";
+   Usage: $0 -i <input file> -e <exlude file>
+EOF
+        exit(1);
+}
+
