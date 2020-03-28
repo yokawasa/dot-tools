@@ -4,7 +4,7 @@
 - seq
 - exclude
 - json-cat
-- repeat
+- rep
 - tree
 - counter
 - color

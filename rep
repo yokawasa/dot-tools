@@ -2,7 +2,7 @@
 
 if [ $# -ne 1 ]
 then
-    echo "USAGE: $1 <cmd>"
+    echo "USAGE: $0 <cmd>"
     exit 1;
 fi
 
