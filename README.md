@@ -8,6 +8,7 @@ A collection of utility tools that I use in my daily operations:
 - counter
 - exclude
 - ff
+- getns
 - json-cat
 - kill-sa
 - macos-version
