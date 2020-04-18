@@ -3,6 +3,7 @@
 A collection of utility tools that I use in my daily operations:
 
 - alpha
+- awscli
 - ch
 - color
 - counter
