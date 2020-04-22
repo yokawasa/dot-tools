@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+URL=$1
+if [ "${URL}" != "" ];
+then
+  while :
+  do
+    status_code=$(curl -o /dev/null -w '%{http_code}\n' -s "${URL}")
+    if [ "${status_code}" != "200" ];then
+      printf '\e[31m%s\e[m\n' ${status_code}
+    else
+      printf '\e[32m%s\e[m\n' ${status_code}
+    fi
+  done
+else
+  echo "$0 <url>"
+fi

@@ -11,6 +11,7 @@ A collection of utility tools that I use in my daily operations:
 - ff
 - getns
 - json-cat
+- is_200
 - kill-sa
 - macos-version
 - path
