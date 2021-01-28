@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+LABEL=$1
+IFS=$'\n'
+for l in $(kubectl get node --show-labels |awk '{print $1 " " $2 " " $6}' | tail -n +2)
+do
+  n=$(echo $l | awk '{print $1}')
+  s=$(echo $l | awk '{print $2}')
+  ng=$(echo $l | awk '{print $3}' | awk -v label=${LABEL} '
+   BEGIN{ FS = "," }
+    {
+      for(i = 1; i <= NF; i++){
+        split($i, a, "=")
+        if(a[1]== label){
+          print(a[2])
+        }
+      }
+    }
+    ')
+  echo "${n} ${s} ${ng}"
+done
