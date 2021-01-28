@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+# BASE=github/dot-tools
+# ln -s $BASE/kubectl-node-label $HOME/.krew/bin/kubectl-node_label
+# kubectl node-label
+
 LABEL=$1
 IFS=$'\n'
 for l in $(kubectl get node --show-labels |awk '{print $1 " " $2 " " $6}' | tail -n +2)
