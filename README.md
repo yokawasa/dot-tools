@@ -24,3 +24,4 @@ A collection of utility tools that I use in my daily operations:
 - tree
 - trivy
 - weather
+- kubectl-node-label
