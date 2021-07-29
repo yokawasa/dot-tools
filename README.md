@@ -10,6 +10,7 @@ A collection of utility tools that I use in my daily operations:
 - exclude
 - ff
 - getns
+- goto
 - json-cat
 - json2yaml
 - is_200

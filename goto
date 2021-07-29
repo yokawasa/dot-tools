@@ -1,0 +1,6 @@
+# D=$(for i in /pathto/dir1 /pathto/dir2 /pathto/dir3;do ls -1 -d $i/*;done | fzf --reverse --exact)
+D=$(for i in $HOME/dev/github;do ls -1 -d $i/*;done | fzf --reverse --exact)
+if [ -n "${D}" ]; then
+  cd ${D}
+  exec /bin/zsh
+fi
