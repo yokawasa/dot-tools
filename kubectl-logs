@@ -1,0 +1,3 @@
+NS=$1
+POD=$(kubectl get po -n ${NS} |grep -v NAME | awk '{print $1}' | fzf)
+kubectl logs ${POD} -n ${NS} -f --tail 0
