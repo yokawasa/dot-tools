@@ -25,3 +25,6 @@ A collection of utility tools that I use in my daily operations:
 - trivy
 - weather
 - kubectl-node-label
+
+configurations file
+- _awp # supposed to use like this `source _awp`
