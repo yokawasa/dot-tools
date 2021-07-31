@@ -1,3 +1,12 @@
 NS=$1
+CON=$2
 POD=$(kubectl get po -n ${NS} |grep -v NAME | awk '{print $1}' | fzf)
-kubectl logs ${POD} -n ${NS} -f --tail 0
+if [ "$CON" != "" ]; then
+  exec_cmd="kubectl logs ${POD} -n ${NS} -c ${CON} -f --tail 0"
+else
+  exec_cmd="kubectl logs ${POD} -n ${NS} -f --tail 0"
+fi
+echo "${exec_cmd}"
+eval "${exec_cmd}" || {
+  echo "ERROR Executed cmd: ${exec_cmd}" 1>&2
+}
