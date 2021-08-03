@@ -1,1 +1,1 @@
-AWS_PROFILE=$(cat ~/.aws/config |grep profile |awk '{print $2}' |sed s/\]//|fzf)
+export AWS_PROFILE=$(cat ~/.aws/config |grep profile |awk '{print $2}' |sed s/\]//|fzf)
