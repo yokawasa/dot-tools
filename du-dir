@@ -1,0 +1,11 @@
+#!/bin/sh
+
+usage() {
+  echo "get top 100 directories that have the highest disk usage" 
+  echo "usage: ${COMMAND} <dir>"
+  exit
+}
+[ "$1" = '-h' -o "$1" = '' ] && usage
+
+du $1 -d 1 | sort -r -n -k 1  | head -n 100
+
