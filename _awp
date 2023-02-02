@@ -1,1 +1,7 @@
+# These unset use to be part of aws-unset but currently included in awp
+unset AWS_PROFILE
+unset AWS_ACCESS_KEY_ID
+unset AWS_SECRET_ACCESS_KEY
+unset AWS_SESSION_TOKEN
+
 export AWS_PROFILE=$(cat ~/.aws/config |grep profile |awk '{print $2}' |sed s/\]//|fzf)
