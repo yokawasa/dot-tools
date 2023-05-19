@@ -1,0 +1,76 @@
+#!/usr/bin/env perl
+
+use strict;
+
+my $target_dir;
+my $work_dir;
+
+if( @ARGV!=3 ){
+	&usage;
+}
+
+my $target_dir="$ARGV[0]";
+my $pre="$ARGV[1]";
+my $after="$ARGV[2]";
+my $work_dir="$target_dir/t";
+
+my $logfile = "replace.log";
+
+
+sub usage {
+	print "[USAGE]:\n";
+	print "you need an argument..\n";
+	print "./replace.pl [targetdir] [from] [to]\n";
+    exit 1;
+}
+
+#-------------------------------------------------------------------------
+#  M A I N
+#-------------------------------------------------------------------------
+
+MAIN: {
+
+	if( !(-e "$work_dir") ) {
+		`mkdir $work_dir`;
+	}
+
+	open (LOG,">>$logfile");
+	print LOG "start replace string >>>>>>>>\n";
+
+	chdir($target_dir) or die("Can not change directory:$target_dir ($!)");
+	while(glob("*")){
+		my $t = $_;
+	
+		# if the file name starts from ".", skip
+		next if( $t =~ /^\./); 
+
+		# if directory, skip
+		next if( -d $t );
+
+		if(-s $t){
+			my @file_path = split/\//,$t;
+			my $file_name = $file_path[0];
+			print LOG "-----------------------------------------\n";
+			print LOG "file -> $file_name\n";
+			print LOG "-----------------------------------------\n";
+			open(IN, $t) or die "can't open: $t \n";
+			open(OUT,">${work_dir}/${file_name}" ) or die "can't open: ${work_dir}/${file_name} \n";
+			foreach(<IN>){
+				my $line = $_;
+
+				if(/$pre/){		
+					print LOG "$line";
+					print LOG ">> \n";
+					$line =~ s/$pre/$after/g;
+					print LOG "$line \n";
+				}
+				print OUT $line;
+			}
+			close(OUT);
+			close(IN);
+		}
+	}
+}
+
+__END__
+
