@@ -20,7 +20,7 @@ my $logfile = "replace.log";
 sub usage {
 	print "[USAGE]:\n";
 	print "you need an argument..\n";
-	print "./replace.pl [targetdir] [from] [to]\n";
+	print "replace [targetdir] [from] [to]\n";
     exit 1;
 }
 
