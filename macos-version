@@ -1,1 +1,5 @@
+set -e -x
+
 system_profiler SPSoftwareDataType
+
+sw_vers
