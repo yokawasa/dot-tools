@@ -1,0 +1,36 @@
+#!/bin/sh
+
+set -e -x
+
+usage() {
+    C=$1
+    echo "USAGE: $1 [file-name (w/o extension)]"
+    echo "$1 scenario -> generate scenario.gif from scenario.mov"
+    exit 1;
+}
+
+#
+# main
+#
+if [ $# -ne 1 ]
+then
+  usage $0;
+else
+  echo "$0 [$1]"
+fi
+
+BASENAME=$1
+
+# ref: https://qiita.com/seigot/items/4d89c42a992569fa1890
+# 2倍速に変換
+ffmpeg -i ${BASENAME}.mov -vf setpts=PTS/2.0 -af atempo=2.0 ${BASENAME}_.mov
+
+# ref: https://inokara.hateblo.jp/entry/2020/11/30/222700
+# -vf scale=960:-1 オプションを使って、横幅 960 でリサイズ
+# -r 10 フレームレート
+ffmpeg -i ${BASENAME}_.mov -r 4  -vf scale=960:-1 ${BASENAME}.gif
+
+if [ -f ${BASENAME}_.mov ]
+then
+  rm ${BASENAME}_.mov
+fi 
