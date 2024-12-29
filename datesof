@@ -1,0 +1,15 @@
+#!/bin/sh
+
+if [ $# -ne 2 ]
+then
+  echo "$0 <year:YYYY> <month:MM>"
+  exit 1
+fi
+YEAR=$1
+MONTH=$2
+
+for d in $(seq 0 30)
+do
+  date -v+${d}d -j -f "%Y-%m-%d" "${YEAR}-${MONTH}-01" +"%Y-%m-%d"
+  echo ""
+done
