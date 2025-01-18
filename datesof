@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 if [ $# -ne 2 ]
 then
@@ -10,6 +10,7 @@ MONTH=$2
 
 for d in $(seq 0 30)
 do
-  date -v+${d}d -j -f "%Y-%m-%d" "${YEAR}-${MONTH}-01" +"%Y-%m-%d"
+  d=$(date -v+${d}d -j -f "%Y-%m-%d" "${YEAR}-${MONTH}-01" +"%Y-%m-%d")
+  echo -n "## $d"
   echo ""
 done
