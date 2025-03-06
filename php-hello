@@ -1,0 +1,2 @@
+docker run --rm php:cli php -r 'echo "Hello\n";'
+# docker run --rm -v "$PWD":/usr/src/myapp -w /usr/src/myapp php:cli php script.php
