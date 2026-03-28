@@ -1,5 +1,4 @@
 #!/bin/sh
-set -e -x
 # gh repo create <repo> --private --clone
 # gh repo create <owner>/<repo> --private --clone
 
