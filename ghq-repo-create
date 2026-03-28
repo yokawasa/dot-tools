@@ -10,20 +10,19 @@ then
   # check if the repo's format is <owner>/<repo>
   if echo "$REPO" | grep -q "/"; then
     echo "Creating repository $REPO"
-    ghq create https://githb.com/${REPO}
+    ghq create https://github.com/${REPO}
     cd $(ghq root)/github.com/${REPO}
-git init
   else
     ghq create https://github.com/yokawasa/${REPO}
     cd $(ghq root)/github.com/yokawasa/${REPO}
   fi
   echo "Initialized empty Git repository in $(pwd)"
-  git init
   # create initial README.md file 
   echo "# $REPO" > README.md
   git add README.md
   git commit -m "Initial commit"
-  gh repo create --private --source=. --remote=origin --push
+  # --source=. means 
+  gh repo create ${REPO} --private --source=. --remote=origin --push
 else
   echo "$0 <repo>"
 fi
