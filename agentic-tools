@@ -1,0 +1,16 @@
+#!/bin/sh
+
+
+LIST="
+claude (cc)
+claude-monitor (cm)
+ccresume
+ghostty
+yazi
+zellij (ze)
+";
+
+for i in $LIST;
+do
+    echo "- $i"
+done
