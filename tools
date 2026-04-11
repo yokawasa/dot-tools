@@ -1,16 +1,17 @@
 #!/bin/sh
 
+echo "list of tools that I've recently used:"
 
 LIST="
-claude (cc)
-clNaude-monitor (cm)
+claude(cc)
+clNaude-monitor(cm)
 ccresume
 ghostty
 yazi
-zellij (ze)
+zellij(ze)
 ";
 
 for i in $LIST;
 do
-    echo "- $i"
+  echo "- $i"
 done
