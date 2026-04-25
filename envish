@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Usage: source envish <envfile>
-#   or:  . envish <envfile>
+# Usage: source envish && envish <envfile>
+#   or:  . envish  && envish <envfile>
 # Reads KEY=VALUE lines from <envfile> and exports them as environment variables.
 # Lines starting with '#' and blank lines are ignored.
 
@@ -12,7 +12,7 @@ envish() {
   local file="${1}"
 
   if [[ -z "$file" ]]; then
-    echo "Usage: source envish <envfile>" >&2
+    echo "Usage: source envish && envish <envfile>" >&2
     return 1
   fi
 
@@ -45,6 +45,6 @@ envish() {
 # If executed directly, print a reminder.
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
   echo "envish: this script must be sourced to affect the current shell." >&2
-  echo "  Usage: source ${BASH_SOURCE[0]} <envfile>" >&2
+  echo "  Usage: source ${BASH_SOURCE[0]}  && envish <envfile>" >&2
   exit 1
 fi
