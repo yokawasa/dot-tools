@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+PORT=$1
+
+if [ -z "${PORT}" ]; then
+  echo "Usage: killport <port>" >&2
+  exit 1
+fi
+
+PID=$(lsof -ti :"${PORT}")
+
+if [ -z "${PID}" ]; then
+  echo "No process found on port ${PORT}"
+  exit 0
+fi
+
+echo ""
+printf '\e[36mPort:\e[m %s\n' "${PORT}"
+printf '\e[36mProcess:\e[m\n'
+ps -p ${PID} -o pid,user,command 2>/dev/null | head -20
+
+echo ""
+printf '\e[33mKill process(es) above? [y/N]: \e[m'
+read -r ANSWER
+
+case "${ANSWER}" in
+  [yY]|[yY][eE][sS])
+    kill -9 ${PID}
+    printf '\e[32mKilled PID %s on port %s\e[m\n' "${PID}" "${PORT}"
+    ;;
+  *)
+    echo "Aborted."
+    exit 0
+    ;;
+esac
