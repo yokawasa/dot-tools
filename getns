@@ -4,4 +4,5 @@ then
   echo "Usage: $0 <domain>"
   exit 1
 fi
+
 dig $1 ns
