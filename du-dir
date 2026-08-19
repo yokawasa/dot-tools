@@ -1,11 +1,11 @@
 #!/bin/sh
 
 usage() {
-  echo "get top 100 directories that have the highest disk usage" 
+  echo "get top 20 directories that have the highest disk usage" 
   echo "usage: ${COMMAND} <dir>"
   exit
 }
 [ "$1" = '-h' -o "$1" = '' ] && usage
 
-du $1 -d 1 | sort -r -n -k 1  | head -n 100
-
+# du $1 -sh -d 1 | sort -r -n -k 1  | head -n 100
+du -sh $1/* 2>/dev/null | sort -hr | head -20
