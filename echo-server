@@ -1,1 +1,2 @@
-docker run --rm -p 8080:8080 mendhak/http-https-echo
+echo "Listening on http://localhost:3000"
+docker run --rm -p 3000:8080 mendhak/http-https-echo
