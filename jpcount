@@ -1,0 +1,42 @@
+#!/usr/bin/env python3
+"""Count Japanese characters in a file.
+
+Usage: jpcount <file>
+"""
+
+import re
+import sys
+
+# Hiragana, Katakana, CJK Unified Ideographs (Kanji), and CJK punctuation
+JP_PATTERN = re.compile(
+    r'[぀-ゟ'   # Hiragana
+    r'゠-ヿ'    # Katakana
+    r'一-鿿'    # CJK Unified Ideographs (Kanji)
+    r'㐀-䶿'    # CJK Unified Ideographs Extension A
+    r'　-〿]'   # CJK punctuation/symbols
+)
+
+
+def count_japanese_chars(path):
+    with open(path, encoding='utf-8') as f:
+        text = f.read()
+    return len(JP_PATTERN.findall(text))
+
+
+def main():
+    if len(sys.argv) != 2:
+        print(f"Usage: {sys.argv[0]} <file>", file=sys.stderr)
+        sys.exit(1)
+
+    path = sys.argv[1]
+    try:
+        count = count_japanese_chars(path)
+    except OSError as e:
+        print(f"Error: {e}", file=sys.stderr)
+        sys.exit(1)
+
+    print(count)
+
+
+if __name__ == '__main__':
+    main()
