@@ -7,20 +7,10 @@ Usage: jpcount <file>
 import re
 import sys
 
-# Hiragana, Katakana, CJK Unified Ideographs (Kanji), and CJK punctuation
-JP_PATTERN = re.compile(
-    r'[぀-ゟ'   # Hiragana
-    r'゠-ヿ'    # Katakana
-    r'一-鿿'    # CJK Unified Ideographs (Kanji)
-    r'㐀-䶿'    # CJK Unified Ideographs Extension A
-    r'　-〿]'   # CJK punctuation/symbols
-)
-
-
 def count_japanese_chars(path):
     with open(path, encoding='utf-8') as f:
         text = f.read()
-    return len(JP_PATTERN.findall(text))
+    return len(text)
 
 
 def main():
